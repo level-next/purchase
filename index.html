@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Item Store</title>
+    <style>
+        :root {
+            /* Adjust this value based on the actual height of the title bar in background.png */
+            --title-bar-height: 80px; 
+            --mobile-max-width: 480px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dark background for desktop area outside mobile view */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: var(--mobile-max-width);
+            /* Aspect ratio based on 799x979 background image */
+            aspect-ratio: 799 / 979;
+            /* If screen is shorter than the aspect ratio height, we might need to constrain height instead, 
+               but usually for mobile view simulation we care about width. 
+               However, to ensure it fits on screen if screen is short: */
+            max-height: 100vh; 
+            
+            background-image: url('assets/background.png');
+            background-size: cover; /* Maintain aspect ratio, fill container */
+            background-repeat: no-repeat;
+            background-position: center top;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Ensure content doesn't spill out of the rounded corners or boundaries */
+        }
+
+        /* 
+           The content area is positioned absolutely or flexed to fill the space 
+           below the title bar. 
+           This ensures the title bar (part of the background) remains visible 
+           and content scrolls "inside" the remaining area.
+        */
+        .scroll-content {
+            margin-top: var(--title-bar-height);
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-bottom: 20px; /* Bottom padding for better look */
+            
+            /* Hide scrollbar for cleaner look (optional, common in games) */
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .scroll-content::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .item-image {
+            display: block;
+            width: 90%; /* Slight padding from edges for main items too? Optional, but looks better */
+            margin: 0 auto 10px auto; /* Center and add bottom margin */
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: center; /* Center the items */
+            gap: 15px; /* Space between items */
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 0 10px; /* Safety padding */
+            box-sizing: border-box;
+        }
+
+        .item-half {
+            width: 42%; /* Slightly smaller than 50% to look more refined */
+            /* Add a subtle frame or shadow to make it look "refined" as requested? 
+               Or just size. User said "left and right too big", so size reduction is key. */
+        }
+        
+        .item-half img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <div class="scroll-content">
+            <!-- Top Notice -->
+            <img src="assets/top_notice.png" alt="Top Notice" class="item-image">
+            
+            <!-- Long Items List -->
+            <img src="assets/items.png" alt="Items" class="item-image">
+            
+            <!-- Side by Side Items -->
+            <div class="item-row">
+                <div class="item-half">
+                    <img src="assets/item_left.png" alt="Item Left">
+                </div>
+                <div class="item-half">
+                    <img src="assets/item_right.png" alt="Item Right">
+                </div>
+            </div>
+            
+            <!-- Item 1 -->
+            <img src="assets/item1.png" alt="Item 1" class="item-image">
+        </div>
+    </div>
+
+</body>
+</html>
