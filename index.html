@@ -16,6 +16,7 @@
             padding: 0;
             background-color: #333; /* Dark background for desktop area outside mobile view */
             display: flex;
+            flex-direction: column; /* Stack vertically */
             justify-content: center;
             align-items: center; /* Center vertically */
             min-height: 100vh;
@@ -30,7 +31,7 @@
             /* If screen is shorter than the aspect ratio height, we might need to constrain height instead, 
                but usually for mobile view simulation we care about width. 
                However, to ensure it fits on screen if screen is short: */
-            max-height: 100vh; 
+            max-height: calc(100vh - 60px); /* Leave space for footer */
             
             background-image: url('assets/background.png');
             background-size: cover; /* Maintain aspect ratio, fill container */
@@ -92,6 +93,23 @@
             height: auto;
         }
 
+        .page-footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .page-footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -117,6 +135,11 @@
             <!-- Item 1 -->
             <img src="assets/item1.png" alt="Item 1" class="item-image">
         </div>
+    </div>
+
+    <!-- Footer outside the mobile container -->
+    <div class="page-footer">
+        <a href="https://mendingstones.levelnext.games/terms-and-privacy.html" target="_blank">Terms of Service & Privacy Policy</a>
     </div>
 
 </body>
